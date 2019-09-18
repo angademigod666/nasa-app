@@ -17,6 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/home" component={Home} />
           <Route exact path="/apod" component={APOD} />
+          <Route exact path="/apod/:urlPassedDate" component={APOD} />
           <Route exact path="/inSight" component={InSight} />
           <Route exact path="/marsRover" component={MarsRover} />
           <Route exact path="/*" render={() => <Redirect to="/home" />} />

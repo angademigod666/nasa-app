@@ -57,7 +57,7 @@ class InSight extends React.Component {
       <React.Fragment>
         <br />
         <div className="row">
-          <div className="col-md-10 offset-1">
+          <div className="col-md-10 offset-md-1 col-xs-12">
             <div className="jumbotron">
               <h1 className="display-4">InSight: Mars Weather Service</h1>
               {data.date}

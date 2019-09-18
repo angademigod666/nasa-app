@@ -15,32 +15,48 @@ const nasaMarsURL = `${nasaAPI.nasaAPIRoot}${nasaAPI.apiName}${nasaAPI.roverName
 // https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY
 
 
-const today = new Date();
-const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - 1}`;
+const localToday = new Date();
+let goBack = 0;
 
 class MarsRover extends React.Component {
 
   state = {
     photos: '',
-    date: dateString,
+    date: localToday,
     show: false,
     err: '',
   }
 
   getMarsRover = () => {
+    const today = this.state.date;
 
-    const dynURL = `${nasaMarsURL}&earth_date=${this.state.date}&page=1`;
-    //console.log("GoingTo=>", dynURL);
-    this.setState({ photos: '', err: '', }, () => {
+    const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - goBack}`;
+
+    const dynURL = `${nasaMarsURL}&earth_date=${dateString}&page=1`;
+    console.log("GoingTo=>", dynURL);
+    this.setState({ photos: '', err: '', date: new Date(dateString), }, () => {
+      console.log("After", dynURL);
       axios.get(dynURL)
         .then((res) => {
           //console.log('success', res);
           //this.setState({ photos: res.data.photos, });
           // Getting all photos
-          const photos = [res.data.photos[0]];
-          this.setState({ photos, });
+          console.log(res);
+          //const photos = [res.data.photos[0]];
+          const aSinglePhoto = res.data.photos[0]
+          console.log(aSinglePhoto);
+          if(aSinglePhoto!==undefined) {
+            this.setState({ photos:[aSinglePhoto], });
+          } else {
+            this.setState({err: 'Sorry we are taking time...'},()=>{
+              goBack = goBack + 1;
+              console.log("GOing Back to", goBack);
+              this.getMarsRover();
+            });
+          }
         })
         .catch(err => {
+          console.log(err);
           this.setState({ err: err.message });
         });
     });
@@ -48,15 +64,15 @@ class MarsRover extends React.Component {
   }
 
   componentDidMount = () => {
-    //console.log("MarsRover Mounted");
+    console.log("MarsRover Mounted");
     this.getMarsRover();
   }
 
   handleChange = (e) => {
-    const date = e.target.value;
+    const date = new Date(e.target.value);
     // ONly the below code actually works!!!
     // The third way of using setState({},{}=>{});
-    if (new Date(date) < new Date()) {
+    if (date < localToday) {
       this.setState({ date, err: '', }, () => this.getMarsRover());
     } else {
       this.setState({ err: 'Future dates are not allowed!' })
@@ -66,12 +82,19 @@ class MarsRover extends React.Component {
 
 
   render() {
+    console.log("Render");
+    
     const { photos, show, err, date, } = this.state;
+    // return (
+    //   <React.Fragment>
+    //     {JSON.stringify(photos)}
+    //   </React.Fragment>
+    // )
     return (
       <React.Fragment>
         <br />
         <div className="row">
-          <div className="col-md-10 offset-1">
+          <div className="col-md-10 offset-md-1 col-xs-12">
             <div className="jumbotron">
               <h1 className="display-4">Mars Rover: Curiosity</h1>
 
@@ -89,28 +112,29 @@ class MarsRover extends React.Component {
                   <span className="spinner-grow text-dark"></span>
                 </div>
               )}
-
+              <p className="text-danger">{err}</p>
               {photos && (
-
                 <div>
-                  <p className="text-danger">{err}</p>
+                  
                   <div className="form-inline">
                     <label htmlFor="date" className="mr-sm-2">
-                      {date}&nbsp;&nbsp;&nbsp;&nbsp;
+                      {/* {photos.earth_date+88}&nbsp;&nbsp;&nbsp;&nbsp; */}
+                      {date.toDateString()}&nbsp;&nbsp;&nbsp;&nbsp;
+                      
                       {!show &&
                         <i onClick={() => this.setState(() => ({ show: true }))}>
                           Change date?</i>}
                     </label>
                     {show && (
-                      <input type="date" onChange={this.handleChange}
+                      <input type="date" placeholder="Choose a date!" onChange={this.handleChange}
                         className="form-control mb-2 mr-sm-2" id="email" />
                     )}
                   </div>
-
+                  <br/>
                   {photos.map((aPhoto, key) => (
                     <div key={key} className="row">
                       <div className="col-md-6">
-                        <img alt={aPhoto.explanation} className="img-fluid rounded"
+                        <img alt={`Images of Martian surface on ${date.toLocaleString()}`} className="img-fluid rounded"
                           src={aPhoto.img_src} />
                       </div>
                       <div className="col-md-6">
@@ -135,37 +159,37 @@ class MarsRover extends React.Component {
                           </thead>
                           <tbody>
                             <tr>
-                              <th>Rover ID</th>
+                              <th>ID</th>
                               <td>{aPhoto.rover.id}</td>
                             </tr>
                             <tr>
-                              <th>Rover name</th>
+                              <th>Name</th>
                               <td>{aPhoto.rover.name}</td>
                             </tr>
 
                             <tr>
-                              <th>launch_date</th>
+                              <th>Launch</th>
                               <td>{aPhoto.rover.launch_date}</td>
                             </tr>
                             <tr>
-                              <th>landing_date</th>
+                              <th>Landing</th>
                               <td>{aPhoto.rover.landing_date}</td>
                             </tr>
                             <tr>
-                              <th>status</th>
+                              <th>Status</th>
                               <td>{aPhoto.rover.status}</td>
                             </tr>
 
                             <tr>
-                              <th>max_date</th>
+                              <th>Max date</th>
                               <td>{aPhoto.rover.max_date}</td>
                             </tr>
                             <tr>
-                              <th>max_sol</th>
+                              <th>Max sol</th>
                               <td>{aPhoto.rover.max_sol}</td>
                             </tr>
                             <tr>
-                              <th>total_photos</th>
+                              <th>Total photos</th>
                               <td>{aPhoto.rover.total_photos}</td>
                             </tr>
                           </tbody>

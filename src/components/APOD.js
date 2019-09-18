@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-
+import { Calendar } from 'primereact/calendar';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 
 
 const nasaAPI = {
@@ -13,47 +16,78 @@ const nasaURL = `${nasaAPI.nasaAPIRoot}${nasaAPI.apiName}?api_key=${nasaAPI.api_
 
 //const nasaURLstatic = 'https://api.nasa.gov/planetary/apod?api_key=FbUUUOEbgI0tKaKYUzCt0tdeGxuLMY5JOMzUx5Qv'
 
+
+let goBack = 0;
+
 class APOD extends React.Component {
 
   state = {
     data: '',
-    date: '',
-    show: false,
-    err:'',
+    date: new Date(),
+    err: '',
   }
 
   getAPOD = () => {
-    const dynURL = `${nasaURL}&date=${this.state.date}`;
+
+    const today = this.state.date;
+    const dateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate() - goBack}`;
+    console.log(goBack);
+
+    const dynURL = `${nasaURL}&date=${dateString}`;
     // console.log("GOing To", dynURL);
-    this.setState({ data: '', err:'', }, () => {
+    this.setState({ data: '', err: '', }, () => {
       axios.get(dynURL)
-        .then((res) => {
+        .then(({ data }) => {
           // console.log('success', res);
-          this.setState({ data: res.data, });
+          if (data !== undefined) {
+            this.setState({ data, });
+          } else {
+            this.setState({ err: 'Sorry we are taking time...' }, () => {
+              goBack = goBack + 1;
+              console.log("GOing Back to", goBack);
+              this.getAPOD();
+            });
+          }
+
         })
         .catch(err => {
           console.log(err);
-          this.setState({ err:err.message });
+          this.setState({ err: err.message }, () => {
+            goBack = goBack + 1;
+            console.log("GOing Back to", goBack);
+            this.getAPOD();
+          });
         });
     });
 
   }
 
   componentDidMount = () => {
-    // console.log("Home Mounted");
+    const predefinedDate = this.props.match.params.urlPassedDate;
+    if (predefinedDate !== undefined) {
+      console.log(predefinedDate);
+      this.setState({ date: new Date(predefinedDate) }, () => {
+        this.getAPOD();
+      });
+    }
     this.getAPOD();
   }
 
   handleChange = (e) => {
-    const date = e.target.value;
+    //const date = e.target.value;
+    const date = e.value;
+
     // ONly the below code actually works!!!
     // The third way of using setState({},{}=>{});
-    if(new Date(date) < new Date() ) {
-      this.setState({ date, err:'', }, () => this.getAPOD());
-    } else {
-      this.setState({err: 'Future dates are not allowed!'})
+    if (date >= new Date('1995-11-07')) {
+      this.setState({ date, err: '', }, () => {
+        this.getAPOD();
+      });
     }
-    
+    else {
+      this.setState({ err: "Can't go beyond 7th November 1995!" })
+    }
+
 
     // THIS code will not work, beloW:
     // this.setState({date: input,});
@@ -70,14 +104,14 @@ class APOD extends React.Component {
 
 
   render() {
-    const { data, show, err } = this.state;
+    const { data, err, date } = this.state;
     return (
       <React.Fragment>
         <br />
         <div className="row">
-          <div className="col-md-10 offset-1">
+          <div className="col-md-10 offset-md-1 col-xs-12">
             <div className="jumbotron">
-              <h1 className="display-4">Astronomy Photo Of the Day</h1>
+              <h1 className="display-4" style={{ fontSize: '3rem' }}>Astronomy Photo Of the Day</h1>
 
               {!data && (
                 <div>
@@ -96,29 +130,41 @@ class APOD extends React.Component {
               {data && (
                 <div>
                   <p className="text-danger">{err}</p>
-                  <div className="form-inline">
-                    
+                  {/* <div className="form-inline">
+
                     <label htmlFor="date" className="mr-sm-2">
                       {data.date}&nbsp;&nbsp;&nbsp;
                       {!show &&
                         <i onClick={() => this.setState(() => ({ show: true }))}>
                           Change date?</i>}
                     </label>
-                    {show && <input type="date" onChange={this.handleChange}
-                      className="form-control mb-2 mr-sm-2" id="email" />}
-                  </div>
-
+                    {show &&
+                      <input placeholder="Choose a date!" type="date" onChange={this.handleChange}
+                        className="form-control mb-2 mr-sm-2" id="email" />
+                    }
+                  </div> */}
+                  <label>Date:</label>&nbsp;&nbsp;
+                  <Calendar readOnlyInput={true} dateFormat="yy-mm-dd"
+                    placeholder="Choose a date!" className="p-calendar"
+                    monthNavigator={true} yearNavigator={true} yearRange="1995:2025"
+                    value={date} onChange={this.handleChange}
+                    maxDate={new Date()} touchUI={true}>
+                  </Calendar>
+                  {/* <span className="text-success">Try changing it!</span> */}
+                  <br />
+                  <br />
                   <div className="row">
                     <div className="col-md-6">
-                      <img alt={data.explanation} className="img-fluid rounded"
-                        src={data.url} />
+                      <a href={data.url} target="_blank" rel="noopener noreferrer">
+                        <img alt={data.explanation} className="img-fluid rounded"
+                          src={data.url} />
+                      </a>
                     </div>
                     <div className="col-md-6">
                       <h2>{data.title}</h2>
                       <p>{data.copyright}</p>
-                      <p><a href={data.hdurl}>View HD</a></p>
+                      <p><a target="_blank" rel="noopener noreferrer" href={data.hdurl}>View HD</a></p>
                       <p>{data.explanation}</p>
-                      
                       <p>Media type: {data.media_type}</p>
                       <p>Service version: {data.service_version}</p>
                     </div>
