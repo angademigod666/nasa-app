@@ -1,9 +1,17 @@
 import React from 'react';
 import axios from 'axios';
+
+
+
+//import ImaggaColor from './ImaggaColor';
+//import MyColorify from './MyColorify';
+import MyVibrant from './MyVibrant';
+
 import { Calendar } from 'primereact/calendar';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+
 
 
 const nasaAPI = {
@@ -130,19 +138,6 @@ class APOD extends React.Component {
               {data && (
                 <div>
                   <p className="text-danger">{err}</p>
-                  {/* <div className="form-inline">
-
-                    <label htmlFor="date" className="mr-sm-2">
-                      {data.date}&nbsp;&nbsp;&nbsp;
-                      {!show &&
-                        <i onClick={() => this.setState(() => ({ show: true }))}>
-                          Change date?</i>}
-                    </label>
-                    {show &&
-                      <input placeholder="Choose a date!" type="date" onChange={this.handleChange}
-                        className="form-control mb-2 mr-sm-2" id="email" />
-                    }
-                  </div> */}
                   <label>Date:</label>&nbsp;&nbsp;
                   <Calendar readOnlyInput={true} dateFormat="yy-mm-dd"
                     placeholder="Choose a date!" className="p-calendar"
@@ -153,6 +148,10 @@ class APOD extends React.Component {
                   {/* <span className="text-success">Try changing it!</span> */}
                   <br />
                   <br />
+                  {/* <ImaggaColor imgURL={data.url}/> */}
+                  {/* <MyColorify imgURL = {data.url}/> */}
+                  <MyVibrant imgURL = {data.url}/>
+                  <br/>
                   <div className="row">
                     <div className="col-md-6">
                       <a href={data.url} target="_blank" rel="noopener noreferrer">

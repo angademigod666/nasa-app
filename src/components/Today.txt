@@ -1,0 +1,592 @@
+import React, { Component, Fragment } from 'react';
+
+export default class extends Component {
+
+  render() {
+    const {imgURL} = this.props;
+    return (
+      <Fragment>
+        <h1>Boo</h1>
+        {imgURL}
+
+
+
+
+
+
+
+        <br/>
+      </Fragment>
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+Headers: {"content-length":"4995","content-type":"application/json; charset=utf-8"}
+
+Response: 
+{
+  "result": {
+    "tags": [
+      {
+        "confidence": 100,
+        "tag": {
+          "en": "star"
+        }
+      },
+      {
+        "confidence": 100,
+        "tag": {
+          "en": "celestial body"
+        }
+      },
+      {
+        "confidence": 66.8170318603516,
+        "tag": {
+          "en": "space"
+        }
+      },
+      {
+        "confidence": 58.7177734375,
+        "tag": {
+          "en": "astronomy"
+        }
+      },
+      {
+        "confidence": 55.5029029846191,
+        "tag": {
+          "en": "galaxy"
+        }
+      },
+      {
+        "confidence": 54.7326889038086,
+        "tag": {
+          "en": "stars"
+        }
+      },
+      {
+        "confidence": 46.7511253356934,
+        "tag": {
+          "en": "cosmos"
+        }
+      },
+      {
+        "confidence": 46.2558517456055,
+        "tag": {
+          "en": "night"
+        }
+      },
+      {
+        "confidence": 45.8642349243164,
+        "tag": {
+          "en": "universe"
+        }
+      },
+      {
+        "confidence": 44.3841590881348,
+        "tag": {
+          "en": "nebula"
+        }
+      },
+      {
+        "confidence": 37.4116973876953,
+        "tag": {
+          "en": "science"
+        }
+      },
+      {
+        "confidence": 37.1283874511719,
+        "tag": {
+          "en": "planet"
+        }
+      },
+      {
+        "confidence": 36.1163635253906,
+        "tag": {
+          "en": "fantasy"
+        }
+      },
+      {
+        "confidence": 35.1347198486328,
+        "tag": {
+          "en": "sky"
+        }
+      },
+      {
+        "confidence": 32.0740165710449,
+        "tag": {
+          "en": "moon"
+        }
+      },
+      {
+        "confidence": 31.4698295593262,
+        "tag": {
+          "en": "orbit"
+        }
+      },
+      {
+        "confidence": 29.8353290557861,
+        "tag": {
+          "en": "sun"
+        }
+      },
+      {
+        "confidence": 28.7814540863037,
+        "tag": {
+          "en": "light"
+        }
+      },
+      {
+        "confidence": 28.2924003601074,
+        "tag": {
+          "en": "solar"
+        }
+      },
+      {
+        "confidence": 27.6053524017334,
+        "tag": {
+          "en": "outer"
+        }
+      },
+      {
+        "confidence": 26.7656764984131,
+        "tag": {
+          "en": "dark"
+        }
+      },
+      {
+        "confidence": 25.6601219177246,
+        "tag": {
+          "en": "cosmic"
+        }
+      },
+      {
+        "confidence": 24.6486301422119,
+        "tag": {
+          "en": "starry"
+        }
+      },
+      {
+        "confidence": 24.5485858917236,
+        "tag": {
+          "en": "alien"
+        }
+      },
+      {
+        "confidence": 23.6333599090576,
+        "tag": {
+          "en": "astrology"
+        }
+      },
+      {
+        "confidence": 23.0752429962158,
+        "tag": {
+          "en": "world"
+        }
+      },
+      {
+        "confidence": 22.2007255554199,
+        "tag": {
+          "en": "bright"
+        }
+      },
+      {
+        "confidence": 21.6780662536621,
+        "tag": {
+          "en": "celestial"
+        }
+      },
+      {
+        "confidence": 21.495906829834,
+        "tag": {
+          "en": "infinity"
+        }
+      },
+      {
+        "confidence": 20.9740390777588,
+        "tag": {
+          "en": "system"
+        }
+      },
+      {
+        "confidence": 20.3164081573486,
+        "tag": {
+          "en": "clouds"
+        }
+      },
+      {
+        "confidence": 19.4764289855957,
+        "tag": {
+          "en": "digital"
+        }
+      },
+      {
+        "confidence": 19.469518661499,
+        "tag": {
+          "en": "texture"
+        }
+      },
+      {
+        "confidence": 18.6609191894531,
+        "tag": {
+          "en": "black"
+        }
+      },
+      {
+        "confidence": 18.6482849121094,
+        "tag": {
+          "en": "fiction"
+        }
+      },
+      {
+        "confidence": 18.4910488128662,
+        "tag": {
+          "en": "glow"
+        }
+      },
+      {
+        "confidence": 17.3941268920898,
+        "tag": {
+          "en": "earth"
+        }
+      },
+      {
+        "confidence": 16.8266563415527,
+        "tag": {
+          "en": "stellar"
+        }
+      },
+      {
+        "confidence": 16.6991119384766,
+        "tag": {
+          "en": "globe"
+        }
+      },
+      {
+        "confidence": 15.8204708099365,
+        "tag": {
+          "en": "astral"
+        }
+      },
+      {
+        "confidence": 15.6316576004028,
+        "tag": {
+          "en": "art"
+        }
+      },
+      {
+        "confidence": 14.7809476852417,
+        "tag": {
+          "en": "twinkle"
+        }
+      },
+      {
+        "confidence": 14.6217241287231,
+        "tag": {
+          "en": "backgrounds"
+        }
+      },
+      {
+        "confidence": 14.6087589263916,
+        "tag": {
+          "en": "graphic"
+        }
+      },
+      {
+        "confidence": 14.3584089279175,
+        "tag": {
+          "en": "deep"
+        }
+      },
+      {
+        "confidence": 14.0847129821777,
+        "tag": {
+          "en": "design"
+        }
+      },
+      {
+        "confidence": 13.8249826431274,
+        "tag": {
+          "en": "infinite"
+        }
+      },
+      {
+        "confidence": 13.039342880249,
+        "tag": {
+          "en": "wallpaper"
+        }
+      },
+      {
+        "confidence": 13.0052070617676,
+        "tag": {
+          "en": "pattern"
+        }
+      },
+      {
+        "confidence": 12.8847646713257,
+        "tag": {
+          "en": "shine"
+        }
+      },
+      {
+        "confidence": 12.8681955337524,
+        "tag": {
+          "en": "planetarium"
+        }
+      },
+      {
+        "confidence": 12.6775560379028,
+        "tag": {
+          "en": "shiny"
+        }
+      },
+      {
+        "confidence": 12.5767412185669,
+        "tag": {
+          "en": "field"
+        }
+      },
+      {
+        "confidence": 11.8875894546509,
+        "tag": {
+          "en": "astrophysics"
+        }
+      },
+      {
+        "confidence": 11.8747987747192,
+        "tag": {
+          "en": "eclipse"
+        }
+      },
+      {
+        "confidence": 11.8671531677246,
+        "tag": {
+          "en": "milky"
+        }
+      },
+      {
+        "confidence": 11.2126274108887,
+        "tag": {
+          "en": "cloud"
+        }
+      },
+      {
+        "confidence": 11.1352453231812,
+        "tag": {
+          "en": "color"
+        }
+      },
+      {
+        "confidence": 11.1196784973145,
+        "tag": {
+          "en": "generated"
+        }
+      },
+      {
+        "confidence": 11.1016702651978,
+        "tag": {
+          "en": "glowing"
+        }
+      },
+      {
+        "confidence": 10.8771381378174,
+        "tag": {
+          "en": "constellation"
+        }
+      },
+      {
+        "confidence": 10.7934608459473,
+        "tag": {
+          "en": "futuristic"
+        }
+      },
+      {
+        "confidence": 10.7037839889526,
+        "tag": {
+          "en": "shining"
+        }
+      },
+      {
+        "confidence": 10.6224565505981,
+        "tag": {
+          "en": "atmosphere"
+        }
+      },
+      {
+        "confidence": 10.4713373184204,
+        "tag": {
+          "en": "way"
+        }
+      },
+      {
+        "confidence": 9.87427425384521,
+        "tag": {
+          "en": "planets"
+        }
+      },
+      {
+        "confidence": 9.79525566101074,
+        "tag": {
+          "en": "voyage"
+        }
+      },
+      {
+        "confidence": 9.72769355773926,
+        "tag": {
+          "en": "exploration"
+        }
+      },
+      {
+        "confidence": 9.70214939117432,
+        "tag": {
+          "en": "shape"
+        }
+      },
+      {
+        "confidence": 9.54096221923828,
+        "tag": {
+          "en": "heaven"
+        }
+      },
+      {
+        "confidence": 9.53617477416992,
+        "tag": {
+          "en": "illuminated"
+        }
+      },
+      {
+        "confidence": 9.20888614654541,
+        "tag": {
+          "en": "sphere"
+        }
+      },
+      {
+        "confidence": 9.12277889251709,
+        "tag": {
+          "en": "global"
+        }
+      },
+      {
+        "confidence": 9.07497215270996,
+        "tag": {
+          "en": "backdrop"
+        }
+      },
+      {
+        "confidence": 9.06667423248291,
+        "tag": {
+          "en": "plasma"
+        }
+      },
+      {
+        "confidence": 8.89358425140381,
+        "tag": {
+          "en": "telescope"
+        }
+      },
+      {
+        "confidence": 8.87726020812988,
+        "tag": {
+          "en": "endless"
+        }
+      },
+      {
+        "confidence": 8.82838249206543,
+        "tag": {
+          "en": "surface"
+        }
+      },
+      {
+        "confidence": 8.79637241363525,
+        "tag": {
+          "en": "dust"
+        }
+      },
+      {
+        "confidence": 8.70375156402588,
+        "tag": {
+          "en": "glitter"
+        }
+      },
+      {
+        "confidence": 8.65959453582764,
+        "tag": {
+          "en": "mystery"
+        }
+      },
+      {
+        "confidence": 8.4496955871582,
+        "tag": {
+          "en": "sunrise"
+        }
+      },
+      {
+        "confidence": 8.31030082702637,
+        "tag": {
+          "en": "ice"
+        }
+      },
+      {
+        "confidence": 8.02337741851807,
+        "tag": {
+          "en": "computer"
+        }
+      },
+      {
+        "confidence": 7.87636184692383,
+        "tag": {
+          "en": "satellite"
+        }
+      },
+      {
+        "confidence": 7.85896015167236,
+        "tag": {
+          "en": "luminosity"
+        }
+      },
+      {
+        "confidence": 7.75185823440552,
+        "tag": {
+          "en": "3d"
+        }
+      },
+      {
+        "confidence": 7.72021579742432,
+        "tag": {
+          "en": "sparkle"
+        }
+      },
+      {
+        "confidence": 7.5736722946167,
+        "tag": {
+          "en": "ray"
+        }
+      },
+      {
+        "confidence": 7.52605009078979,
+        "tag": {
+          "en": "abstraction"
+        }
+      },
+      {
+        "confidence": 7.01277637481689,
+        "tag": {
+          "en": "vibrant"
+        }
+      }
+    ]
+  },
+  "status": {
+    "text": "",
+    "type": "success"
+  }
+}

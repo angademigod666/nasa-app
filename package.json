@@ -6,7 +6,11 @@
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "color-convert": "^2.0.1",
+    "colorify.js": "^1.0.3",
+    "http-proxy-middleware": "^0.20.0",
     "jquery": "^3.4.1",
+    "node-vibrant": "^3.1.4",
     "popper.js": "^1.15.0",
     "primeicons": "^2.0.0",
     "primereact": "^3.2.0",
@@ -15,11 +19,13 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.3.0",
+    "resemblejs": "^3.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && firebase deploy",
+    "build": "react-scripts build",
+    "deploy":"firebase deploy",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
